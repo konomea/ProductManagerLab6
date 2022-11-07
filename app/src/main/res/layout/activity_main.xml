@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter name"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editTextPrice"
@@ -38,8 +37,7 @@
             android:ems="10"
             android:hint="Enter price"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="Price" />
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/addButton"

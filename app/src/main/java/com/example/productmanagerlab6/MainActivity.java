@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextPrice;
     Button buttonAddProduct;
     ListView listViewProducts;
+    ProductList productsAdapter;
 
     DatabaseReference databaseProducts;
     List<Product> products;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
         products = new ArrayList<>();
+        productsAdapter = new ProductList(MainActivity.this, products);
+        listViewProducts.setAdapter(productsAdapter);
 
         //adding an onClickListener to button
         buttonAddProduct.setOnClickListener(view -> addProduct());
@@ -60,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        ProductList productsAdapter = new ProductList(MainActivity.this, products);
-        listViewProducts.setAdapter(productsAdapter);
+
         //attaching value event listener
         databaseProducts.addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,10 +79,6 @@ public class MainActivity extends AppCompatActivity {
                     //adding product to the list
                     products.add(product);
                 }
-
-                // Object databaseError = null;
-                productsAdapter.clear();
-                productsAdapter.addAll(products);
                 productsAdapter.notifyDataSetChanged();
             }
 
